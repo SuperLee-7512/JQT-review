@@ -210,44 +210,9 @@ boot_B = 100
 
 For final reproduction, use the larger values reported in the manuscript.
 
-## Expected figure files
-
-Depending on which `ggsave()` lines are active, the scripts may generate files such as:
-
-```text
-weibull_complete_coverage.pdf
-complete_length.pdf
-weibull_typeII_coverage_95.pdf
-type2_length.pdf
-weibull_alt_coverage.pdf
-alt_length.pdf
-case_IT.pdf
-```
-
-Some saving commands are commented out by default. Uncomment the corresponding `ggsave()` command if a figure should be written to disk.
-
 ## Notes
 
 - The scripts are self-contained and can be run independently.
 - Random seeds are set in the simulation calls to make the results reproducible.
 - Long simulation runs may require substantial computation time.
 - The code is intended for reproducing the numerical studies in the manuscript rather than as a general-purpose R package.
-
-## Citation
-
-If you use this code, please cite the accompanying manuscript:
-
-```bibtex
-@unpublished{weibull_higher_order_likelihood,
-  title  = {Higher-order Likelihood-based Inference for Weibull Models},
-  author = {Author names to be added},
-  year   = {2026},
-  note   = {Manuscript}
-}
-```
-
-Please replace the placeholder author information with the final citation information before public release.
-
-## License
-
-No license is specified yet. If the repository is made public, please add a `LICENSE` file to clarify reuse conditions.
