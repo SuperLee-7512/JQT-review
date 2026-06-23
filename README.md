@@ -17,35 +17,6 @@ The repository is organized around four self-contained R scripts:
 
 Each script can be run independently.
 
-## Repository structure
-
-A simple repository structure is:
-
-```text
-.
-├── README.md
-├── Sim_complete.R
-├── Sim_typeII.R
-├── Sim_alt.R
-└── Case_study.R
-```
-
-If preferred, the scripts can also be placed in a `code/` folder:
-
-```text
-.
-├── README.md
-├── code/
-│   ├── Sim_complete.R
-│   ├── Sim_typeII.R
-│   ├── Sim_alt.R
-│   └── Case_study.R
-├── figure/
-└── output/
-```
-
-If you use this structure, please update the file paths or working directory before running the scripts.
-
 ## Software requirements
 
 The code was written in R. The main external packages are:
