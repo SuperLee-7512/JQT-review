@@ -769,77 +769,77 @@ sim_length_type2 <- function(
   do.call(rbind, res_list)
 }
 
-# # =============================================================================
-# # Simulation: coverage probabilities
-# # =============================================================================
-# 
-# res_type2 <- sim_type2_grid(
-#   beta_vec  = c(0.5, 1, 5),
-#   eta_vec   = c(2,   1, 0.5),
-#   n         = 10,
-#   r_vec     = c(3, 5, 8),
-#   p_quant   = 0.1,
-#   n_rep     = 10000,
-#   conf_levels = c(0.9, 0.95),
-#   seed      = 123
-# )
-# print(res_type2)
-# 
-# # =============================================================================
-# # Plot: coverage probabilities
-# # =============================================================================
-# 
-# library(dplyr)
-# library(ggplot2)
-# 
-# res_type2 <- res_type2 %>%
-#   rename(r = r_fail) %>%   # adjust this name if your column is slightly different
-#   mutate(
-#     param_lab = factor(
-#       param,
-#       levels = c("shape_beta", "log_scale_a", "log_quantile_zeta"),
-#       labels = c(
-#         "Shape~beta",
-#         "Log~scale~a",
-#         "Log~quantile~zeta[0.1]"
-#       )
-#     ),
-#     beta_eta = dplyr::case_when(
-#       beta == 0.5 & eta == 2   ~ "beta==0.5*','~~eta==2",
-#       beta == 1   & eta == 1   ~ "beta==1*','~~eta==1",
-#       beta == 5   & eta == 0.5 ~ "beta==5*','~~eta==0.5",
-#       TRUE ~ "beta==NA*','~~eta==NA"
-#     ),
-#     beta_eta = factor(
-#       beta_eta,
-#       levels = c(
-#         "beta==0.5*','~~eta==2",
-#         "beta==1*','~~eta==1",
-#         "beta==5*','~~eta==0.5"
-#       )
-#     ),
-#     method_lab = factor(
-#       method,
-#       levels = c("signed_root", "modified_root"),
-#       labels = c("Signed root", "Modified root")
-#     ),
-#     conf_lab = factor(
-#       conf_level,
-#       levels = c(0.9, 0.95),
-#       labels = c("90% intervals", "95% intervals")
-#     )
-#   )
-# 
-# # Build and save plots
-# #p_type2_90 <- plot_type2_coverage(res_type2, conf_level_target = 0.90)
-# p_type2_95 <- plot_type2_coverage(res_type2, conf_level_target = 0.95)
-# 
-# #print(p_type2_90)
-# print(p_type2_95)
-# 
-# #ggsave("weibull_typeII_coverage_90.pdf", p_type2_90, width = 7, height = 6)
-# # ggsave("weibull_typeII_coverage_95.pdf", p_type2_95,
-# # width = 7, height = 6)
+# =============================================================================
+# Simulation: coverage probabilities
+# =============================================================================
+
+res_type2 <- sim_type2_grid(
+  beta_vec  = c(0.5, 1, 5),
+  eta_vec   = c(2,   1, 0.5),
+  n         = 10,
+  r_vec     = c(3, 5, 8),
+  p_quant   = 0.1,
+  n_rep     = 10000,
+  conf_levels = c(0.9, 0.95),
+  seed      = 123
+)
+print(res_type2)
+
+# =============================================================================
+# Plot: coverage probabilities
+# =============================================================================
+
+library(dplyr)
+library(ggplot2)
+
+res_type2 <- res_type2 %>%
+  rename(r = r_fail) %>%   # adjust this name if your column is slightly different
+  mutate(
+    param_lab = factor(
+      param,
+      levels = c("shape_beta", "log_scale_a", "log_quantile_zeta"),
+      labels = c(
+        "Shape~beta",
+        "Log~scale~a",
+        "Log~quantile~zeta[0.1]"
+      )
+    ),
+    beta_eta = dplyr::case_when(
+      beta == 0.5 & eta == 2   ~ "beta==0.5*','~~eta==2",
+      beta == 1   & eta == 1   ~ "beta==1*','~~eta==1",
+      beta == 5   & eta == 0.5 ~ "beta==5*','~~eta==0.5",
+      TRUE ~ "beta==NA*','~~eta==NA"
+    ),
+    beta_eta = factor(
+      beta_eta,
+      levels = c(
+        "beta==0.5*','~~eta==2",
+        "beta==1*','~~eta==1",
+        "beta==5*','~~eta==0.5"
+      )
+    ),
+    method_lab = factor(
+      method,
+      levels = c("signed_root", "modified_root"),
+      labels = c("Signed root", "Modified root")
+    ),
+    conf_lab = factor(
+      conf_level,
+      levels = c(0.9, 0.95),
+      labels = c("90% intervals", "95% intervals")
+    )
+  )
+
+# Build and save plots
+#p_type2_90 <- plot_type2_coverage(res_type2, conf_level_target = 0.90)
+p_type2_95 <- plot_type2_coverage(res_type2, conf_level_target = 0.95)
+
+#print(p_type2_90)
+print(p_type2_95)
+
+ggsave("weibull_typeII_coverage_95.pdf", p_type2_95, width = 7, height = 6)
+# ggsave("weibull_typeII_coverage_95.pdf", p_type2_95,
+# width = 7, height = 6)
 
 # =============================================================================
 # Simulation: average interval lengths
